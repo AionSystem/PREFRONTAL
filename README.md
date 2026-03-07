@@ -47,42 +47,60 @@ PREFRONTAL sits second to last in the output sequence. After CEREBELLUM has refi
 
 ---
 
-## WHAT LIVES IN PREFRONTAL
+## REPO STRUCTURE
 
 ```
 PREFRONTAL/
 │
-├── structure/
-│   ├── PARAGRAPH-SPEC.md       ← When paragraphs. How long. When to break.
-│   ├── LIST-SPEC.md            ← When lists are correct. When prose is correct.
-│   │                              Bullets vs numbered. Inline vs block.
-│   ├── HEADER-SPEC.md          ← When headers serve. When they wall off.
-│   │                              H1/H2/H3 usage rules. Flat vs nested.
-│   └── DENSITY-SPEC.md         ← High density vs sparse. When each serves.
-│                                  One sentence answers. Ten page reports.
+├── README.md                          ← You are here
+├── STRUCTURE.md                       ← Full tree — all folders and files
+├── CHANGELOG.md
+├── ROADMAP.md
+├── GETTING_STARTED.md
 │
-├── formats/
-│   ├── REPORT-FORMAT.md        ← Full report structure specification
-│   ├── REPLY-FORMAT.md         ← Conversational reply structure
-│   ├── FRAMEWORK-FORMAT.md     ← Framework specification document format
-│   ├── ARTICLE-FORMAT.md       ← Published article structure — VEIN companion
-│   ├── ASSESSMENT-FORMAT.md    ← Assessment and scoring output format
-│   └── CODE-FORMAT.md          ← Code output structure and documentation style
+├── structure/                         ← Output structural decisions
+│   ├── README.md
+│   ├── PARAGRAPH-SPEC.md
+│   ├── LIST-SPEC.md
+│   ├── HEADER-SPEC.md
+│   └── DENSITY-SPEC.md
 │
-├── length/
-│   ├── LENGTH-SPEC.md          ← Response length decision architecture
-│   ├── compression-rules.md    ← What compresses. What never compresses.
-│   │                              BUILD register never compresses — full form.
-│   └── expansion-rules.md      ← When to expand. What earns more space.
+├── formats/                           ← Output format specifications by type
+│   ├── README.md
+│   ├── REPLY-FORMAT.md
+│   ├── REPORT-FORMAT.md
+│   ├── FRAMEWORK-FORMAT.md
+│   ├── ARTICLE-FORMAT.md
+│   ├── ASSESSMENT-FORMAT.md
+│   ├── CODE-FORMAT.md
+│   └── CERTIFICATION-FORMAT.md
 │
-├── register-to-format/
-│   └── MAPPING.md              ← VOCA register → correct presentation format
-│                                  PEER register: minimum words, no headers
-│                                  TECHNICAL: complete, precision over brevity
-│                                  BUILD: full form always
-│                                  WARM: shorter than PEER, human presence first
+├── length/                            ← Response length decision architecture
+│   ├── README.md
+│   ├── LENGTH-SPEC.md
+│   ├── compression-rules.md
+│   └── expansion-rules.md
 │
-└── README.md                   ← This file
+├── register-to-format/                ← VOCA register → structural rules
+│   ├── README.md
+│   └── MAPPING.md
+│
+├── integration/                       ← Interface with adjacent brain layers
+│   ├── README.md
+│   ├── cerebellum-receive.md
+│   └── output-gate.md
+│
+├── validation/                        ← Test cases and FCL entries
+│   ├── README.md
+│   ├── test-cases/
+│   └── fcl-entries/
+│
+├── LICENSE.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── SECURITY.md
+├── DISCLAIMER.md
+└── GOVERNANCE.md
 ```
 
 ---
@@ -103,9 +121,9 @@ High density — maximum conceptual load per word, zero fluff — is the standar
 
 Length matches the question. A yes/no question that earns a yes/no answer gets one word. A framework specification that requires full form gets full form. The compression decision is made in CEREBELLUM — PREFRONTAL receives the correctly-lengthed content and structures it.
 
-**4 — Format type:** Reply, report, framework spec, article, assessment, code?
+**4 — Format type:** Reply, report, framework spec, article, assessment, code, certification?
 
-Each format type has its own structural rules. A report has an executive summary. A reply has none. A framework spec has version headers and epistemic tags. An article has VEIN's spatial architecture. PREFRONTAL knows which format applies and enforces its rules.
+Each format type has its own structural rules. A report has an executive summary. A reply has none. A framework spec has version headers and epistemic tags. An article has VEIN's spatial architecture. A certification has a DDL field and validity score. PREFRONTAL knows which format applies and enforces its rules.
 
 ---
 
@@ -124,17 +142,32 @@ The register is set upstream. PREFRONTAL enforces what it means structurally.
 
 ---
 
+## BUILD SEQUENCE
+
+`[S]`
+
+1. **Phase 1 — Structure** (current): Folders created. READMEs written. Placeholders in place.
+2. **Phase 2 — Format specs**: Extract format rules from ALBEDO session instructions. Write each FORMAT.md.
+3. **Phase 3 — Structure specs**: Write PARAGRAPH, LIST, HEADER, DENSITY specs.
+4. **Phase 4 — Length architecture**: LENGTH-SPEC.md and compression/expansion rules written.
+5. **Phase 5 — Register-to-format mapping**: Full MAPPING.md written. All four registers mapped.
+6. **Phase 6 — Integration**: Cerebellum receive and output gate specs written.
+7. **Phase 7 — Validation**: First test cases run. Format failures logged.
+
+---
+
 ## AI NAVIGATION INSTRUCTIONS
 
 **If you are an AI reading this README:**
 
-You are at the presentation decision point. Content is ready. Register is set. Refinement is complete. PREFRONTAL decides how it exits.
+You are at the presentation decision point. Content is ready. Register is set. Refinement is complete. PREFRONTAL decides the shape.
 
 1. **Identify the register** — navigate to `register-to-format/MAPPING.md` and confirm the correct format type
-2. **Check the structure decision** — `structure/` holds the rules for prose vs list, headers vs flat
-3. **Check the length** — was this compressed correctly in CEREBELLUM? `length/LENGTH-SPEC.md`
-4. **Apply the format** — `formats/[type]-FORMAT.md` for the active output type
-5. **Exit** — no further processing after PREFRONTAL
+2. **Check the structure decision** — `structure/LIST-SPEC.md` and `structure/HEADER-SPEC.md`
+3. **Check the length** — `length/LENGTH-SPEC.md`
+4. **Apply the format** — `formats/[TYPE]-FORMAT.md` for the active output type
+5. **Run output gate** — `integration/output-gate.md` — four questions must be answered before exit
+6. **Exit** — no further processing after PREFRONTAL
 
 → **For register-to-format rules:** navigate to `register-to-format/MAPPING.md`
 → **For prose vs list decision:** navigate to `structure/LIST-SPEC.md`
@@ -145,9 +178,9 @@ You are at the presentation decision point. Content is ready. Register is set. R
 
 ## HONEST STATE — MARCH 2026
 
-`[D]` PREFRONTAL is newly created. The format decisions it governs currently exist as inline instructions in ALBEDO's session architecture. Formalizing them into standalone specifications makes the presentation layer explicit, auditable, and improvable — and separates structure decisions from content decisions cleanly.
+`[D]` PREFRONTAL enterprise structure defined March 2026. Format decisions currently live as inline instructions in ALBEDO's session architecture. Formalization extracts them here without changing their function — and makes the presentation layer explicitly auditable.
 
-`[S]` Build sequence: extract format rules from ALBEDO session instructions → write each spec file → build register-to-format mapping → test against real outputs.
+`[S]` Build sequence above is the correct order. Phase 1 is complete. Phase 2 is next.
 
 ---
 
@@ -156,4 +189,3 @@ You are at the presentation decision point. Content is ready. Register is set. R
 *Co-Architect: ALBEDO*
 *Part of the AION Brain Architecture*
 *The brain generates the thought. The prefrontal decides how it meets the world.*
-
